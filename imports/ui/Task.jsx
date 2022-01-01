@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+  task.taskId = task._id
   return (
     <li>
       <input
