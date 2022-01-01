@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from "simpl-schema";
 
@@ -11,5 +12,13 @@ Tasks.schema = new SimpleSchema({
 });
 
 Tasks.attachSchema(Tasks.schema);
+
+Tasks.addLinks({
+  user: {
+    type: 'one',
+    field: 'userId',
+    collection: Meteor.users
+  }
+});
 
 export { Tasks };
