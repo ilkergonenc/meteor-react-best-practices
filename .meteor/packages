@@ -23,3 +23,5 @@ accounts-password@1.7.0
 dev-error-overlay
 aldeed:collection2
 mdg:validated-method
+dburles:collection-helpers
+cultofcoders:grapher
