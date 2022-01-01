@@ -5,11 +5,11 @@ import { Tasks } from '/imports/api/tasks/tasks';
 import { Task } from './Task';
 import { TaskForm } from './TaskForm';
 import { LoginForm } from './LoginForm';
+import { taskSetIsChecked, taskRemove } from '../api/tasks/tasksMethods';
 
-const toggleChecked = ({ _id, isChecked }) =>
-  Meteor.call('tasks.setIsChecked', _id, !isChecked);
+const toggleChecked = ({ taskId, isChecked }) => taskSetIsChecked.call({ taskId, isChecked });
 
-const deleteTask = ({ _id }) => Meteor.call('tasks.remove', _id);
+const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
 
 export const App = () => {
   const user = useTracker(() => Meteor.user());
