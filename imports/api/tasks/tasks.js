@@ -6,11 +6,18 @@ const Tasks = new Mongo.Collection('tasks');
 
 Tasks.schema = new SimpleSchema({
   text: { type: String, max: 260 },
-  body: { type: String, optional: true },
+  body: { type: String, defaultValue: '' },
   isChecked: { type: Boolean, defaultValue: false },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id },
   createdAt: Date,
 });
+
+Tasks.defaultFields = {
+  text: 1, 
+  isChecked: 1,
+  userId: 1,
+  createdAt: 1
+}
 
 Tasks.attachSchema(Tasks.schema);
 
