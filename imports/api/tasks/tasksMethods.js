@@ -51,7 +51,7 @@ const taskSetIsChecked = new ValidatedMethod({
     try {
       Tasks.update(taskId, {
         $set: {
-          isChecked,
+          isChecked: !isChecked,
         },
       });
     } catch (error) {
