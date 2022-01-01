@@ -19,3 +19,7 @@ https://guide.meteor.com/collections.html#associations
 https://cult-of-coders.github.io/grapher/ 
 https://atmospherejs.com/cultofcoders/grapher 
 https://atmospherejs.com/dburles/collection-helpers 
+
+## Migrating to a new schema & Bulk changes
+https://guide.meteor.com/collections.html#migrations 
+https://atmospherejs.com/percolate/migrations 
