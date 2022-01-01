@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Tasks } from '/imports/api/tasks/tasks';
 import '/imports/api/tasks/tasksMethods';
 import '/imports/api/tasks/tasksPublications';
+import './migrations';
 
 const insertTask = (taskText, user) =>
   Tasks.insert({
@@ -43,5 +44,8 @@ Meteor.startup(() => {
     }
   });
   
+  // Migrations.migrateTo(0);
+  // Migrations.migrateTo(1);
+  // Migrations.migrateTo('latest');
 
 });
