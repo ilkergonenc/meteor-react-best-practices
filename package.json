@@ -1,5 +1,5 @@
 {
-  "name": "basic-task",
+  "name": "btoa",
   "private": true,
   "scripts": {
     "play": "meteor run -p 4000",
