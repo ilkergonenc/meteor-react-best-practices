@@ -13,6 +13,12 @@ Tasks.schema = new SimpleSchema({
 
 Tasks.attachSchema(Tasks.schema);
 
+Tasks.helpers({
+  isPrivate() {
+    return !!this.userId;
+  }
+});
+
 Tasks.addLinks({
   user: {
     type: 'one',

@@ -35,4 +35,13 @@ Meteor.startup(() => {
       'Seventh Task',
     ].forEach(taskText => insertTask(taskText, user));
   }
+
+  Meteor.users.addLinks({
+    'tasks': {
+        collection: Tasks,
+        inversedBy: 'user'
+    }
+  });
+  
+
 });
