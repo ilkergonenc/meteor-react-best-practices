@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { TasksCollection } from '/imports/api/tasks/TasksCollection';
+import { Tasks } from '/imports/api/tasks/tasks';
 import '/imports/api/tasks/tasksMethods';
 import '/imports/api/tasks/tasksPublications';
 
 const insertTask = (taskText, user) =>
-  TasksCollection.insert({
+  Tasks.insert({
     text: taskText,
     userId: user._id,
     createdAt: new Date(),
@@ -24,7 +24,7 @@ Meteor.startup(() => {
 
   const user = Accounts.findUserByUsername(SEED_USERNAME);
 
-  if (TasksCollection.find().count() === 0) {
+  if (Tasks.find().count() === 0) {
     [
       'First Task',
       'Second Task',

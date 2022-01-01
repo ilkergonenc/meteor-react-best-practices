@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, Fragment } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { TasksCollection } from '/imports/api/tasks/TasksCollection';
+import { Tasks } from '/imports/api/tasks/tasks';
 import { Task } from './Task';
 import { TaskForm } from './TaskForm';
 import { LoginForm } from './LoginForm';
@@ -33,13 +33,13 @@ export const App = () => {
       return { ...noDataAvailable, isLoading: true };
     }
 
-    const tasks = TasksCollection.find(
+    const tasks = Tasks.find(
       hideCompleted ? pendingOnlyFilter : userFilter,
       {
         sort: { createdAt: -1 },
       }
     ).fetch();
-    const pendingTasksCount = TasksCollection.find(pendingOnlyFilter).count();
+    const pendingTasksCount = Tasks.find(pendingOnlyFilter).count();
 
     return { tasks, pendingTasksCount };
   });

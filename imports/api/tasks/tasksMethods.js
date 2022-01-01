@@ -1,5 +1,5 @@
 import { check } from 'meteor/check';
-import { TasksCollection } from '/imports/api/tasks/TasksCollection';
+import { Tasks } from '/imports/api/tasks/tasks';
 
 Meteor.methods({
   'tasks.insert'(text) {
@@ -9,7 +9,7 @@ Meteor.methods({
       throw new Meteor.Error('Not authorized.');
     }
 
-    TasksCollection.insert({
+    Tasks.insert({
       text,
       createdAt: new Date(),
       userId: this.userId,
@@ -23,13 +23,13 @@ Meteor.methods({
       throw new Meteor.Error('Not authorized.');
     }
 
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
 
     if (!task) {
       throw new Meteor.Error('Access denied.');
     }
 
-    TasksCollection.remove(taskId);
+    Tasks.remove(taskId);
   },
 
   'tasks.setIsChecked'(taskId, isChecked) {
@@ -40,13 +40,13 @@ Meteor.methods({
       throw new Meteor.Error('Not authorized.');
     }
 
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
 
     if (!task) {
       throw new Meteor.Error('Access denied.');
     }
 
-    TasksCollection.update(taskId, {
+    Tasks.update(taskId, {
       $set: {
         isChecked,
       },
