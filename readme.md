@@ -26,3 +26,7 @@ https://atmospherejs.com/percolate/migrations
 
 ## Guard: Disable client-side updates on a collection
 https://guide.meteor.com/security.html#allow-deny
+
+## Collection Hooks on insert|update|remove
+https://guide.meteor.com/collections.html#hooks
+https://github.com/Meteor-Community-Packages/meteor-collection-hooks/
