@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+export const TaskItem = ({ task, onCheckboxClick, onDeleteClick }) => {
   task.taskId = task._id
   return (
     <li>

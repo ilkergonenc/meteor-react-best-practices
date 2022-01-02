@@ -1,100 +1,29 @@
 import { Meteor } from 'meteor/meteor';
-import React, { useState, Fragment } from 'react';
-import { useTracker } from 'meteor/react-meteor-data';
-import { Tasks } from '/imports/api/tasks/tasks';
-import { Task } from './Task';
-import { TaskForm } from './TaskForm';
-import { LoginForm } from './LoginForm';
-import { taskSetIsChecked, taskRemove } from '../api/tasks/tasksMethods';
+import React from 'react';
+import { Routes, Route, Link } from "react-router-dom";
+import { withTracker } from 'meteor/react-meteor-data';
+import { LoginForm } from '/imports/ui/LoginForm';
+import { TaskForm } from '/imports/ui/TaskForm';
+import { TasksMain } from '/imports/ui/TasksMain';
+import { NotFound } from '/imports/ui/NotFound';
 
-const toggleChecked = ({ taskId, isChecked }) => taskSetIsChecked.call({ taskId, isChecked });
-
-const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
-
-export const App = () => {
-  const user = useTracker(() => Meteor.user());
-
-  const [hideCompleted, setHideCompleted] = useState(false);
-
-  const hideCompletedFilter = { isChecked: { $ne: true } };
-
-  const userFilter = user ? { userId: user._id } : {};
-
-  const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
-
-  const { tasks, pendingTasksCount, isLoading } = useTracker(() => {
-    const noDataAvailable = { tasks: [], pendingTasksCount: 0 };
-    if (!Meteor.user()) {
-      return noDataAvailable;
-    }
-    const handler = Meteor.subscribe('tasks');
-
-    if (!handler.ready()) {
-      return { ...noDataAvailable, isLoading: true };
-    }
-
-    const tasks = Tasks.find(
-      hideCompleted ? pendingOnlyFilter : userFilter,
-      {
-        sort: { createdAt: -1 },
-      }
-    ).fetch();
-    const pendingTasksCount = Tasks.find(pendingOnlyFilter).count();
-
-    return { tasks, pendingTasksCount };
-  });
-
-  const pendingTasksTitle = `${
-    pendingTasksCount ? ` (${pendingTasksCount})` : ''
-  }`;
-
-  const logout = () => Meteor.logout();
-
-  return (
-    <div className="app">
-      <header>
-        <div className="app-bar">
-          <div className="app-header">
-            <h1>
-              📝️ To Do List
-              {pendingTasksTitle}
-            </h1>
-          </div>
+export const App = () => (
+  <div className="app">
+    <header>
+      <div className="app-bar">
+        <div className="app-header">
+          <h1>📝️ Welcome to React Router!</h1>
         </div>
-      </header>
-
-      <div className="main">
-        {user ? (
-          <Fragment>
-            <div className="user" onClick={logout}>
-              {user.username} 🚪
-            </div>
-
-            <TaskForm />
-
-            <div className="filter">
-              <button onClick={() => setHideCompleted(!hideCompleted)}>
-                {hideCompleted ? 'Show All' : 'Hide Completed'}
-              </button>
-            </div>
-
-            {isLoading && <div className="loading">loading...</div>}
-
-            <ul className="tasks">
-              {tasks.map(task => (
-                <Task
-                  key={task._id}
-                  task={task}
-                  onCheckboxClick={toggleChecked}
-                  onDeleteClick={deleteTask}
-                />
-              ))}
-            </ul>
-          </Fragment>
-        ) : (
-          <LoginForm />
-        )}
       </div>
+    </header>
+
+    <div className="main">
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="task" element={<TaskForm />} />
+        <Route path="tasks" element={<TasksMain />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
-  );
-};
+  </div>
+);
