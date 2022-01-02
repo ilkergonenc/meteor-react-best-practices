@@ -34,3 +34,8 @@
 ## Security: DDP Rate limiting | ddp-rate-limiter-mixin
 - https://guide.meteor.com/security.html#rate-limiting
 - https://github.com/nlhuykhang/ddp-rate-limiter-mixin
+
+## Routing: Client-Side: react-router | history | react-meteor-data
+- https://guide.meteor.com/react.html
+- https://reactrouter.com/docs/en/v6/getting-started/installation
+- https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data
