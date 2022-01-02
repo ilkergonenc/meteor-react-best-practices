@@ -4,28 +4,22 @@ import SimpleSchema from "simpl-schema";
 
 const Tasks = new Mongo.Collection('tasks');
 
+// task schema validation
 Tasks.schema = new SimpleSchema({
-  text: { type: String, max: 260, optional: true },
-  title: { type: String, max: 260, optional: true },
-  body: { type: String, defaultValue: '' },
+  text: { type: String, max: 260 },
   isChecked: { type: Boolean, defaultValue: false },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id },
-  createdAt: Date,
+  createdAt: { type: Date, optional:true }
 });
 Tasks.attachSchema(Tasks.schema);
 
+// task readables
 Tasks.defaultFields = {
   text: 1, 
   isChecked: 1,
   userId: 1,
   createdAt: 1
 };
-
-Tasks.helpers({
-  isPrivate() {
-    return !!this.userId;
-  }
-});
 
 // task hasOne user
 Tasks.addLinks({
@@ -36,7 +30,15 @@ Tasks.addLinks({
   }
 });
 
+// task helpers
+Tasks.helpers({
+  isPrivate() {
+    return !!this.userId;
+  }
+});
+
 /**
+ * GUARD
  * Deny all client-side updates on the Lists collection
  * When use deny make sure no other part of your app can use allow: 
  * so we allow not instead of deny
@@ -46,5 +48,11 @@ Tasks.allow({
   update() { return false; },
   remove() { return false; },
 });
+
+// timestamble
+Tasks.before.insert(function (userId, document) {
+  document.createdAt = new Date();
+});
+
 
 export { Tasks };

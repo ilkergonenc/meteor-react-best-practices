@@ -12,7 +12,6 @@ const taskInsert = new ValidatedMethod({
     try {
       Tasks.insert({
         text,
-        createdAt: new Date(),
         userId: this.userId,
       });
     } catch (error) {
