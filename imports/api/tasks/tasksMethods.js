@@ -13,10 +13,9 @@ const taskInsert = new ValidatedMethod({
   schema: {
     text: { type: String }
   },
-  mixins: [schemaMixin, RateLimiterMixin],
+  mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ text }) {
-    if (!this.userId) throw new Meteor.Error('Not authorized.');
     try {
       Tasks.insert({
         text,
@@ -33,10 +32,9 @@ const taskRemove = new ValidatedMethod({
   schema: {
     taskId: { type: String }
   },
-  mixins: [schemaMixin, RateLimiterMixin],
+  mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId }) {
-    if (!this.userId) throw new Meteor.Error('Not authorized.');
     const task = Tasks.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
@@ -53,10 +51,9 @@ const taskSetIsChecked = new ValidatedMethod({
     taskId: { type: String },
     isChecked: { type: Boolean },
   },
-  mixins: [schemaMixin, RateLimiterMixin],
+  mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId, isChecked }) {
-    if (!this.userId) throw new Meteor.Error('Not authorized.');
     const task = Tasks.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
@@ -71,10 +68,19 @@ const taskSetIsChecked = new ValidatedMethod({
   }
 });
 
-function schemaMixin(methodOptions) {
+function SchemaMixin(methodOptions) {
   methodOptions.validate = new SimpleSchema(methodOptions.schema).validator();
   return methodOptions;
-}
+};
+
+function LoggedInMixin(methodOptions){
+   const runFunction = methodOptions.run;
+   methodOptions.run = function(){
+     if(!this.userId) throw new Meteor.Error(`Not authorized. Only users can run this.`);
+     return runFunction.call(this, ...arguments);
+   };
+   return methodOptions;
+ };
 
 export {
   taskInsert,
