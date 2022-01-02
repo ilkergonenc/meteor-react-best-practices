@@ -30,3 +30,7 @@
 ## Collection Hooks on insert | update | remove
 - https://guide.meteor.com/collections.html#hooks
 - https://github.com/Meteor-Community-Packages/meteor-collection-hooks/
+
+## Security: DDP Rate limiting | ddp-rate-limiter-mixin
+- https://guide.meteor.com/security.html#rate-limiting
+- https://github.com/nlhuykhang/ddp-rate-limiter-mixin
