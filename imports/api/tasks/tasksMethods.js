@@ -1,12 +1,20 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { RateLimiterMixin } from 'ddp-rate-limiter-mixin';
 import SimpleSchema from "simpl-schema";
 import { Tasks } from '/imports/api/tasks/tasks';
+
+const rateLimitDefaults = {
+  numRequests: 5,
+  timeInterval: 5000,
+}
 
 const taskInsert = new ValidatedMethod({
   name: 'tasks.insert',
   validate: new SimpleSchema({
     text: { type: String }
   }).validator(),
+  mixins: [RateLimiterMixin],
+  rateLimit: rateLimitDefaults,
   run({ text }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
     try {
@@ -25,6 +33,8 @@ const taskRemove = new ValidatedMethod({
   validate: new SimpleSchema({
     taskId: { type: String }
   }).validator(),
+  mixins: [RateLimiterMixin],
+  rateLimit: rateLimitDefaults,
   run({ taskId }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
     const task = Tasks.findOne({ _id: taskId, userId: this.userId });
@@ -43,6 +53,8 @@ const taskSetIsChecked = new ValidatedMethod({
     taskId: { type: String },
     isChecked: { type: Boolean },
   }).validator(),
+  mixins: [RateLimiterMixin],
+  rateLimit: rateLimitDefaults,
   run({ taskId, isChecked }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
     const task = Tasks.findOne({ _id: taskId, userId: this.userId });
