@@ -46,6 +46,7 @@ Meteor.startup(() => {
   
   // Migrations.migrateTo(0);
   // Migrations.migrateTo(1);
+  // Migrations.migrateTo(2);
   // Migrations.migrateTo('latest');
 
 });

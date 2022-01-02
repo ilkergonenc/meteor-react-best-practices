@@ -5,7 +5,8 @@ import SimpleSchema from "simpl-schema";
 const Tasks = new Mongo.Collection('tasks');
 
 Tasks.schema = new SimpleSchema({
-  text: { type: String, max: 260 },
+  text: { type: String, max: 260, optional: true },
+  title: { type: String, max: 260, optional: true },
   body: { type: String, defaultValue: '' },
   isChecked: { type: Boolean, defaultValue: false },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id },
