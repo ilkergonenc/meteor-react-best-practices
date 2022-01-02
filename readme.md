@@ -12,7 +12,7 @@
 - https://atmospherejs.com/aldeed/collection2 
 
 ## Advanced Methods
-https://guide.meteor.com/methods.html#validated-method 
+- https://guide.meteor.com/methods.html#validated-method 
 
 ## Associations Between Collections
 - https://guide.meteor.com/collections.html#associations 
