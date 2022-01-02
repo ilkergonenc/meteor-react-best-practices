@@ -14,7 +14,7 @@ Tasks.schema = new SimpleSchema({
 Tasks.attachSchema(Tasks.schema);
 
 // task readables
-Tasks.defaultFields = {
+Tasks.publicFields = {
   text: 1, 
   isChecked: 1,
   userId: 1,
