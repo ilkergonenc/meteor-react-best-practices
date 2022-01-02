@@ -10,10 +10,10 @@ const rateLimitDefaults = {
 
 const taskInsert = new ValidatedMethod({
   name: 'tasks.insert',
-  validate: new SimpleSchema({
+  schema: {
     text: { type: String }
-  }).validator(),
-  mixins: [RateLimiterMixin],
+  },
+  mixins: [schemaMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ text }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
@@ -30,10 +30,10 @@ const taskInsert = new ValidatedMethod({
 
 const taskRemove = new ValidatedMethod({
   name: 'tasks.remove',
-  validate: new SimpleSchema({
+  schema: {
     taskId: { type: String }
-  }).validator(),
-  mixins: [RateLimiterMixin],
+  },
+  mixins: [schemaMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
@@ -49,11 +49,11 @@ const taskRemove = new ValidatedMethod({
 
 const taskSetIsChecked = new ValidatedMethod({
   name: 'tasks.setIsChecked',
-  validate: new SimpleSchema({
+  schema: {
     taskId: { type: String },
     isChecked: { type: Boolean },
-  }).validator(),
-  mixins: [RateLimiterMixin],
+  },
+  mixins: [schemaMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId, isChecked }) {
     if (!this.userId) throw new Meteor.Error('Not authorized.');
@@ -70,6 +70,11 @@ const taskSetIsChecked = new ValidatedMethod({
     }
   }
 });
+
+function schemaMixin(methodOptions) {
+  methodOptions.validate = new SimpleSchema(methodOptions.schema).validator();
+  return methodOptions;
+}
 
 export {
   taskInsert,
