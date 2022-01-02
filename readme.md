@@ -23,3 +23,6 @@ https://atmospherejs.com/dburles/collection-helpers
 ## Migrating to a new schema & Bulk changes
 https://guide.meteor.com/collections.html#migrations 
 https://atmospherejs.com/percolate/migrations 
+
+## Guard: Disable client-side updates on a collection
+https://guide.meteor.com/security.html#allow-deny
