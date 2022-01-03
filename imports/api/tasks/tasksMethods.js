@@ -1,7 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { RateLimiterMixin } from 'ddp-rate-limiter-mixin';
 import SimpleSchema from "simpl-schema";
-import { Tasks } from '/imports/api/tasks/tasks';
+import TasksCollection from './TasksCollection';
 
 const rateLimitDefaults = {
   numRequests: 5,
@@ -17,7 +17,7 @@ const taskInsert = new ValidatedMethod({
   rateLimit: rateLimitDefaults,
   run({ text }) {
     try {
-      Tasks.insert({
+      TasksCollection.insert({
         text,
         userId: this.userId,
       });
@@ -35,10 +35,10 @@ const taskRemove = new ValidatedMethod({
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId }) {
-    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
+    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      Tasks.remove(taskId);
+      TasksCollection.remove(taskId);
     } catch (error) {
       throw new Meteor.Error('Could not remove collection.', error); 
     }
@@ -54,10 +54,10 @@ const taskSetIsChecked = new ValidatedMethod({
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId, isChecked }) {
-    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
+    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      Tasks.update(taskId, {
+      TasksCollection.update(taskId, {
         $set: {
           isChecked: !isChecked,
         },
