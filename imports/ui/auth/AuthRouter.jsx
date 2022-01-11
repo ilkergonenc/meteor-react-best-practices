@@ -1,14 +1,15 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
-import { SignInForm } from './SignInForm';
+import { LogInForm } from './LogInForm';
 import { SignUpForm } from './SignUpForm';
+
 import { NotFound } from '../NotFound';
 
 export const AuthRouter = () => (
   <Routes>
-    <Route path='signin' element={<SignInForm />} />
-    <Route path='signup' element={<SignUpForm />} />
+    <Route path='login' element={<LogInForm />} />
+    <Route path='join' element={<SignUpForm />} />
     <Route path="*" element={<NotFound />} />
     {/* <Route path="sign" element={} >
       <Route path="up" element={} />
