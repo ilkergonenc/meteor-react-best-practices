@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
-
 import { 
   Flex,
   Box,
   Spacer,
-  Heading
+  Heading,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+  HStack,
+  Link as CLink
 } from '@chakra-ui/react';
 
 import { useAuth } from '../auth/@/AuthProvider';
@@ -13,48 +19,46 @@ import { useAuth } from '../auth/@/AuthProvider';
 export const Navigation = () => {
 
   return (
-    <Flex>
-      <Heading>B2A</Heading>
-      <Spacer />
-      <Box p='4'>
-        <Link to='/'>Welcome</Link>
+    <Flex align="center" py='4'>
+      <Box>
+        <Link to='/'>
+          <Heading>B2A</Heading>
+        </Link>
       </Box>
       <Spacer />
-      <Box p='4'>
-        <Link to='tasks'>Tasks</Link>
+      <Box>
+        <HStack>
+          <Link to='tasks'>Tasks</Link>
+          <Link to='tasks/query'>Query</Link>
+        </HStack>
       </Box>
       <Spacer />
-      <Box p='4'>
-        <Link to='404'>NotFound</Link>
-      </Box>
-      <Spacer />
-      <Box p='4'>
-        <Link to='signup'>Sign Up</Link>
-      </Box>
-      <Spacer />
-      <Box p='4'>
-        <AuthLink />
+      <Box>
+        <AuthMenu />
       </Box>
     </Flex>
   );
 };
 
-
-function AuthLink() {
+function AuthMenu() {
   let auth = useAuth();
   let navigate = useNavigate();
 
-  if (!auth.user) {
-    return <Link to='signin'>Signin</Link>;
-  }
+  if (!auth.user)
+    return (
+      <HStack>
+        <Link to='login'>Log in</Link>
+        <Spacer px='2' />
+        <Button onClick={()=>navigate("join")}>Sign up</Button>
+      </HStack>
+    ); 
 
   return (
-      <a
-        onClick={() => {
-          auth.signout(() => navigate("/"));
-        }}
-      >
-        Sign out
-      </a>
+    <Menu>
+      <MenuButton as={Button}>{auth.user}</MenuButton>
+      <MenuList>
+        <MenuItem onClick={()=>{auth.signout(()=>navigate("/"))}}>Sign out</MenuItem>
+      </MenuList>
+    </Menu>
   );
 };
