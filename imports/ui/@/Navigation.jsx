@@ -29,6 +29,10 @@ export const Navigation = () => {
       </Box>
       <Spacer />
       <Box p='4'>
+        <Link to='signup'>Sign Up</Link>
+      </Box>
+      <Spacer />
+      <Box p='4'>
         <AuthLink />
       </Box>
     </Flex>
