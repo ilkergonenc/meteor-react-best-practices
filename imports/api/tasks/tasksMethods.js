@@ -1,6 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { RateLimiterMixin } from 'ddp-rate-limiter-mixin';
 import SimpleSchema from "simpl-schema";
+
 import TasksCollection from './TasksCollection';
 
 const rateLimitDefaults = {
@@ -11,13 +12,13 @@ const rateLimitDefaults = {
 const taskInsert = new ValidatedMethod({
   name: 'tasks.insert',
   schema: {
-    text: { type: String }
+    text: { type: String },
   },
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ text }) {
     try {
-      TasksCollection.insert({
+      return TasksCollection.insert({
         text,
         userId: this.userId,
       });
@@ -27,20 +28,27 @@ const taskInsert = new ValidatedMethod({
   }
 });
 
-const taskRemove = new ValidatedMethod({
-  name: 'tasks.remove',
+const taskUpdate= new ValidatedMethod({
+  name: 'tasks.update',
   schema: {
-    taskId: { type: String }
+    taskId: { type: String },
+    text: { type: String },
+    isChecked: { type: Boolean },
   },
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
-  run({ taskId }) {
+  run({ taskId, text, isChecked }) {
     const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      TasksCollection.remove(taskId);
+      TasksCollection.update(taskId, {
+        $set: {
+          text,
+          isChecked,
+        }
+      });
     } catch (error) {
-      throw new Meteor.Error('Could not remove collection.', error); 
+      throw new Meteor.Error('Could not update collection.', error); 
     }
   }
 });
@@ -68,6 +76,24 @@ const taskSetIsChecked = new ValidatedMethod({
   }
 });
 
+const taskRemove = new ValidatedMethod({
+  name: 'tasks.remove',
+  schema: {
+    taskId: { type: String }
+  },
+  mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
+  rateLimit: rateLimitDefaults,
+  run({ taskId }) {
+    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    if (!task) throw new Meteor.Error('Access denied.');
+    try {
+      TasksCollection.remove(taskId);
+    } catch (error) {
+      throw new Meteor.Error('Could not remove collection.', error); 
+    }
+  }
+});
+
 function SchemaMixin(methodOptions) {
   methodOptions.validate = new SimpleSchema(methodOptions.schema).validator();
   return methodOptions;
@@ -84,6 +110,7 @@ function LoggedInMixin(methodOptions){
 
 export {
   taskInsert,
+  taskUpdate,
   taskRemove,
   taskSetIsChecked
 };
