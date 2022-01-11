@@ -13,6 +13,7 @@
 
 ## Advanced Methods
 - https://guide.meteor.com/methods.html#validated-method 
+- https://github.com/meteor/validated-method
 
 ## Associations Between Collections
 - https://guide.meteor.com/collections.html#associations 
@@ -39,3 +40,11 @@
 - https://guide.meteor.com/react.html
 - https://reactrouter.com/docs/en/v6/getting-started/installation
 - https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data
+
+## UserInterface: ComponentBased Structure: chackra | hookforms | loadable
+- https://guide.meteor.com/structure.html#javascript-structure 
+- https://chakra-ui.com/docs/getting-started
+- https://react-hook-form.com/get-started
+
+## Routing: Auth|Guest Middlewares & Provider
+- https://reactrouter.com/docs/en/v6/examples/auth
