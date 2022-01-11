@@ -9,7 +9,7 @@ import { Stack, Button } from '@chakra-ui/react';
 import FormControlValid from '../@/FormControlValid';
 import { useAuth } from './@/AuthProvider';
 
-export const SignInForm = () => {
+export const LogInForm = () => {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
@@ -64,7 +64,7 @@ export const SignInForm = () => {
           register={register}
         />
         <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
-          Sign Up
+          Log in
         </Button>
       </Stack>
     </form>
