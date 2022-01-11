@@ -41,15 +41,15 @@ export const Navigation = () => {
 };
 
 function AuthMenu() {
-  let auth = useAuth();
-  let navigate = useNavigate();
+  const auth = useAuth();
+  const nav = useNavigate();
 
   if (!auth.user)
     return (
       <HStack>
         <Link to='login'>Log in</Link>
         <Spacer px='2' />
-        <Button onClick={()=>navigate("join")}>Sign up</Button>
+        <Button onClick={()=>nav("join")}>Sign up</Button>
       </HStack>
     ); 
 
@@ -57,7 +57,7 @@ function AuthMenu() {
     <Menu>
       <MenuButton as={Button}>{auth.user}</MenuButton>
       <MenuList>
-        <MenuItem onClick={()=>{auth.signout(()=>navigate("/"))}}>Sign out</MenuItem>
+        <MenuItem onClick={()=>{auth.signout(()=>nav("/"))}}>Logout</MenuItem>
       </MenuList>
     </Menu>
   );
