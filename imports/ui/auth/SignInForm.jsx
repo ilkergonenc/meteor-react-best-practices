@@ -9,7 +9,7 @@ import { Stack, Button } from '@chakra-ui/react';
 import FormControlValid from '../@/FormControlValid';
 import { useAuth } from './@/AuthProvider';
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
