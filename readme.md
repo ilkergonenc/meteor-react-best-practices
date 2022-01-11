@@ -48,3 +48,9 @@
 
 ## Routing: Auth|Guest Middlewares & Provider
 - https://reactrouter.com/docs/en/v6/examples/auth
+
+## Data-loading: Publications VS Grapher | tracker & hooks
+- https://guide.meteor.com/data-loading.html
+- https://cult-of-coders.github.io/grapher/ 
+- https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data
+- https://docs.meteor.com/api/tracker.html
