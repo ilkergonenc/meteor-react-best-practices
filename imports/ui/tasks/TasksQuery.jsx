@@ -22,15 +22,9 @@ export const TasksQuery = () => {
     const handler = query.subscribe();
     if (!handler.ready()) return { ...noDataAvailable, isLoading: true };
     const tasks = query.fetch();
-    // console.log(tasks);
     return {tasks};
   });
-  // const todoHandler = Meteor.subscribe('taskTodo', todoId);
-  // const todos = Todos.findOne({ _id: task.todoId });
-  // task.todos = todos;
-  // const imageHandler = Meteor.subscribe('taskImages', taskId);
-  // const images = Images.find({ taskId: task._id }).fetch();
-  // task.images = images;
+
   return (
     <Box>
       {isLoading && <div className="loading">loading...</div>}
