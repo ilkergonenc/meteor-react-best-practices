@@ -39,8 +39,8 @@ Meteor.startup(() => {
 
   Meteor.users.addLinks({
     'tasks': {
-        collection: TasksCollection,
-        inversedBy: 'user'
+      collection: TasksCollection,
+      inversedBy: 'user'
     }
   });
   
