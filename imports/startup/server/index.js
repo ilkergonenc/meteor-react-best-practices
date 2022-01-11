@@ -3,6 +3,9 @@ import { Accounts } from 'meteor/accounts-base';
 import TasksCollection from '/imports/api/tasks/TasksCollection';
 import '/imports/api/tasks/tasksMethods';
 import '/imports/api/tasks/tasksPublications';
+import '/imports/api/tasks/queries/tasks';
+import '/imports/api/tasks/queries/tasks.expose';
+
 import './migrations';
 
 const insertTask = (taskText, user) =>
