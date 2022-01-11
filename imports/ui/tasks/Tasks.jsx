@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 
 import TasksCollection from "/imports/api/tasks/TasksCollection";
-import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/tasksMethods';
+import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/tasks.methods';
 
 import { TaskItem } from './TaskItem';
 import { TaskForm } from './TaskForm';

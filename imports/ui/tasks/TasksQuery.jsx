@@ -13,8 +13,6 @@ import {
 
 import tasksQuery from '/imports/api/tasks/queries/tasks';
 
-import { TaskItem } from './TaskItem';
-
 export const TasksQuery = () => {
 
   const { tasks, isLoading } = useTracker(() => {
@@ -38,7 +36,7 @@ export const TasksQuery = () => {
       {isLoading && <div className="loading">loading...</div>}
       <List spacing={3}>
         {tasks.map(task => (
-          <ListItem>
+          <ListItem key={task._id}>
           <Flex>
             <Link to={`${task._id}`} >{task.text}</Link>
             <Spacer />
