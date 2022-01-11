@@ -9,12 +9,16 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "bcrypt": "^5.0.0",
     "ddp-rate-limiter-mixin": "^1.1.10",
-    "history": "^5.2.0",
+    "framer-motion": "^5.5.5",
     "meteor-node-stubs": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^7.22.5",
     "react-router-dom": "^6.2.1",
     "simpl-schema": "^1.12.0"
   },

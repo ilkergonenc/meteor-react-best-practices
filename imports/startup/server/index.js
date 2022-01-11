@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { Tasks } from '/imports/api/tasks/tasks';
+import TasksCollection from '/imports/api/tasks/TasksCollection';
 import '/imports/api/tasks/tasksMethods';
 import '/imports/api/tasks/tasksPublications';
 import './migrations';
 
 const insertTask = (taskText, user) =>
-  Tasks.insert({
+  TasksCollection.insert({
     text: taskText,
     userId: user._id,
     createdAt: new Date(),
@@ -25,7 +25,7 @@ Meteor.startup(() => {
 
   const user = Accounts.findUserByUsername(SEED_USERNAME);
 
-  if (Tasks.find().count() === 0) {
+  if (TasksCollection.find().count() === 0) {
     [
       'First Task',
       'Second Task',
@@ -39,8 +39,8 @@ Meteor.startup(() => {
 
   Meteor.users.addLinks({
     'tasks': {
-        collection: Tasks,
-        inversedBy: 'user'
+      collection: TasksCollection,
+      inversedBy: 'user'
     }
   });
   

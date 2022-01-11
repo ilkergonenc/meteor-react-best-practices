@@ -1,14 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { App } from '/imports/ui/App';
+import * as ReactDOM from "react-dom";
+import { RouterApp } from './router';
 
 Meteor.startup(() => {
   ReactDOM.render(
-    <BrowserRouter history={createBrowserHistory}>
-      <App />
-    </BrowserRouter>, 
-    document.getElementById('react-target')
+    <App />,
+    document.getElementById('react-application')
     );
 });
+
+function App(){
+  return (
+    <RouterApp />
+  );
+};
