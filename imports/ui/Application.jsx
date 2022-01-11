@@ -20,7 +20,6 @@ export const Application = () => (
       nav={(<Navigation />)}
       routes={(
         <Routes>
-          <Route path="*" element={<NotFound />} />
           <Route element={<GuestMiddleware />}>
             <Route path="/" element={<Welcome />} />
             <Route path="/*" element={<AuthRouter />} />
@@ -28,6 +27,7 @@ export const Application = () => (
           <Route element={<AuthMiddleware />}>
             <Route path="tasks/*" element={<TasksRouter />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       )}
     />
