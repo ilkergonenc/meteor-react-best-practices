@@ -5,6 +5,7 @@ import { TaskID } from './TaskID';
 import { TaskForm } from './TaskForm';
 import { Task } from './Task';
 import { Tasks } from './Tasks';
+import { TasksQuery } from './TasksQuery';
 
 export const TasksRouter = () => (
   <Routes>
@@ -14,6 +15,7 @@ export const TasksRouter = () => (
         <Route index element={<Task />} />
       </Route>
       <Route path="new" element={<TaskForm formWithId={false} />} />
+      <Route path="query" element={<TasksQuery />} />
       <Route index element={<Tasks />} />
     </Route>
   </Routes>
