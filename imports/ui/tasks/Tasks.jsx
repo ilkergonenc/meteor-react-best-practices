@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 import { useTracker } from 'meteor/react-meteor-data';
 
 import React, { useState } from 'react';
@@ -10,8 +11,8 @@ import {
   List 
 } from '@chakra-ui/react';
 
-import TasksCollection from "/imports/api/tasks/TasksCollection";
 import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/tasks.methods';
+import tasksQuery from '/imports/api/tasks/queries/tasks';
 
 import { TaskItem } from './TaskItem';
 import { TaskForm } from './TaskForm';
@@ -23,30 +24,34 @@ const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
 export const Tasks = () => {
 
   const user = useTracker(() => Meteor.user());
+
   const [hideCompleted, setHideCompleted] = useState(false);
+  const [pendingTasksCount, setPendingTasksCount] = useState(0);
+
   const hideCompletedFilter = { isChecked: { $ne: true } };
   const userFilter = user ? { userId: user._id } : {};
   const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
-  const { tasks, pendingTasksCount, isLoading } = useTracker(() => {
-    const noDataAvailable = { tasks: [], pendingTasksCount: 0 };
-    if (!Meteor.user()) return noDataAvailable;
-    const handler = Meteor.subscribe('tasks');
+  const queryFilters = hideCompleted ? pendingOnlyFilter : userFilter;
+
+  const { tasks, isLoading } = useTracker(() => {
+    const noDataAvailable = { tasks: [] };
+    const query = tasksQuery.clone({ ...queryFilters });
+    const handler = query.subscribe();
     if (!handler.ready()) return { ...noDataAvailable, isLoading: true };
-    const tasks = TasksCollection.find(
-      hideCompleted ? pendingOnlyFilter : userFilter,
-      { sort: { createdAt: -1 }, }
-    ).fetch();
-    const pendingTasksCount = TasksCollection.find(pendingOnlyFilter).count();
-    return { tasks, pendingTasksCount };
+    const tasks = query.fetch();
+    return { tasks };
   });
-  const pendingTasksTitle = `${
-    pendingTasksCount ? ` (${pendingTasksCount})` : ''
-  }`;
+
+  const pendingTasksCountQuery = tasksQuery.clone({ ...pendingOnlyFilter });
+  Tracker.autorun(() => { 
+    const handle = pendingTasksCountQuery.subscribeCount();
+    if (handle.ready()) setPendingTasksCount(pendingTasksCountQuery.getCount()); 
+  });
 
   return (
     <Box>
       <Heading as='h1' size='md'>
-        To Do List {pendingTasksTitle}
+        To Do List {pendingTasksCount ? ` (${pendingTasksCount})` : ''}
       </Heading>
 
       <TaskForm formWithId={false} />

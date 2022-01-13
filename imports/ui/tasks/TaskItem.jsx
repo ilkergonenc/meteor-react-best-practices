@@ -30,7 +30,10 @@ export const TaskItem = ({ task, onCheckboxClick, onDeleteClick }) => {
           {/* <Link href={`tasks/${task._id}`} >{task.text}</Link> */}
         </HStack>
         <Spacer />
+        <HStack> 
+        <span>@{task.user?.username}</span>
         <Button onClick={() => onDeleteClick(task)}>&times;</Button>
+        </HStack>
       </Flex>
     </ListItem>
   );

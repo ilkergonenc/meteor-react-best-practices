@@ -20,7 +20,7 @@ export const Task = () => {
       Task: {task?.text}<br />
       Status: {task?.isChecked ? 'Done' : 'Not Done'}<br />
       {/* {task?.userId}<br /> */}
-      User:@{task?.username}<br />
+      User:@{task?.user?.username}<br />
     </Box>
   );
 };

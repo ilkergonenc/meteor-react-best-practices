@@ -29,7 +29,6 @@ export const Navigation = () => {
       <Box>
         <HStack>
           <Link to='tasks'>Tasks</Link>
-          <Link to='tasks/query'>Query</Link>
         </HStack>
       </Box>
       <Spacer />

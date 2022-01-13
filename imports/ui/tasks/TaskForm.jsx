@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { useForm, Controller } from 'react-hook-form';
@@ -30,7 +30,7 @@ export const TaskForm = ({ formWithId }) => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const [checked, setChecked] = React.useState(false);
+  const checked = useState(!!task?.isChecked);
   
   function onSubmit(values) {
     if(!formWithId)
@@ -59,7 +59,6 @@ export const TaskForm = ({ formWithId }) => {
   useEffect(() => {
     if(formWithId) {
       setValue('text', task?.text);
-      setChecked(!!task.isChecked);
     } 
   });
 
