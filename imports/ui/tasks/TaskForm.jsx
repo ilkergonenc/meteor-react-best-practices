@@ -30,7 +30,7 @@ export const TaskForm = ({ formWithId }) => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const checked = useState(!!task?.isChecked);
+  const [checked, setChecked] = useState(!!task?.isChecked);
   
   function onSubmit(values) {
     if(!formWithId)
@@ -59,6 +59,7 @@ export const TaskForm = ({ formWithId }) => {
   useEffect(() => {
     if(formWithId) {
       setValue('text', task?.text);
+      setChecked(!!task?.isChecked);
     } 
   });
 
