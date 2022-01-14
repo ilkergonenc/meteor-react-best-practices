@@ -29,3 +29,4 @@ percolate:migrations
 matb33:collection-hooks
 ddp-rate-limiter
 accounts-base
+server-render
