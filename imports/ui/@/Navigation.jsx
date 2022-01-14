@@ -29,6 +29,7 @@ export const Navigation = () => {
       <Box>
         <HStack>
           <Link to='tasks'>Tasks</Link>
+          <Link to='tasks/new'>New</Link>
         </HStack>
       </Box>
       <Spacer />
