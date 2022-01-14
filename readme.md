@@ -49,8 +49,14 @@
 ## Routing: Auth|Guest Middlewares & Provider
 - https://reactrouter.com/docs/en/v6/examples/auth
 
-## Data-loading: Publications VS Grapher | tracker & hooks
+## Data-loading: Publications in Grapher | graphql like query-based
 - https://guide.meteor.com/data-loading.html
-- https://cult-of-coders.github.io/grapher/ 
 - https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data
 - https://docs.meteor.com/api/tracker.html
+- https://cult-of-coders.github.io/grapher/ 
+- https://github.com/cult-of-coders/grapher-react
+- https://github.com/cult-of-coders/grapher-boilerplate
+
+# SSR: Server-Side Rendering
+- https://docs.meteor.com/packages/server-render.html
+- https://reactrouter.com/docs/en/v6/guides/ssr
