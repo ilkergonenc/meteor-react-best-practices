@@ -1,4 +1,7 @@
-import './fixtures';
-import './migrations';
-
 import '/imports/api/@';
+
+import './ssr';
+
+import './fixtures';
+
+import './migrations';

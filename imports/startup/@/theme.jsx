@@ -1,14 +1,11 @@
 import React from 'react';
-import { 
-  extendTheme,
-  ChakraProvider, 
-  CSSReset
-} from '@chakra-ui/react';
+import { extendTheme, ChakraProvider, CSSReset } from '@chakra-ui/react';
 
 const config = {
   initialColorMode: "dark",
   useSystemColorMode: false,
 };
+
 const theme = extendTheme({ config });
 
 import { Application } from '/imports/ui/Application';
