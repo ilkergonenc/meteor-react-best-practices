@@ -1,37 +1,22 @@
-import { Meteor } from 'meteor/meteor';
+// import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from "simpl-schema";
+// import Users from '../users/UsersCollection';
 
-const TasksCollection = new Mongo.Collection('tasks');
+const Tasks = new Mongo.Collection('tasks');
+export default Tasks;
 
 // task schema validation
-TasksCollection.schema = new SimpleSchema({
+Tasks.schema = new SimpleSchema({
   text: { type: String, max: 260 },
   isChecked: { type: Boolean, defaultValue: false },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id },
   createdAt: { type: Date, optional:true }
 });
-TasksCollection.attachSchema(TasksCollection.schema);
-
-// task readables
-TasksCollection.publicFields = {
-  text: 1, 
-  isChecked: 1,
-  userId: 1,
-  createdAt: 1
-};
-
-// task hasOne user
-TasksCollection.addLinks({
-  user: {
-    type: 'one',
-    field: 'userId',
-    collection: Meteor.users
-  }
-});
+Tasks.attachSchema(Tasks.schema);
 
 // task helpers
-TasksCollection.helpers({
+Tasks.helpers({
   isPrivate() {
     return !!this.userId;
   }
@@ -43,16 +28,13 @@ TasksCollection.helpers({
  * When use deny make sure no other part of your app can use allow: 
  * so we allow not instead of deny
  */
-TasksCollection.allow({
+ Tasks.allow({
   insert() { return false; },
   update() { return false; },
   remove() { return false; },
 });
 
 // timestamble
-TasksCollection.before.insert(function (userId, document) {
+Tasks.before.insert(function (userId, document) {
   document.createdAt = new Date();
 });
-
-
-export default TasksCollection;

@@ -2,7 +2,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { RateLimiterMixin } from 'ddp-rate-limiter-mixin';
 import SimpleSchema from "simpl-schema";
 
-import TasksCollection from './TasksCollection';
+import Tasks from './collection';
 
 const rateLimitDefaults = {
   numRequests: 5,
@@ -18,7 +18,7 @@ const taskInsert = new ValidatedMethod({
   rateLimit: rateLimitDefaults,
   run({ text }) {
     try {
-      return TasksCollection.insert({
+      return Tasks.insert({
         text,
         userId: this.userId,
       });
@@ -38,10 +38,10 @@ const taskUpdate= new ValidatedMethod({
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId, text, isChecked }) {
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      TasksCollection.update(taskId, {
+      Tasks.update(taskId, {
         $set: {
           text,
           isChecked,
@@ -62,10 +62,10 @@ const taskSetIsChecked = new ValidatedMethod({
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId, isChecked }) {
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      TasksCollection.update(taskId, {
+      Tasks.update(taskId, {
         $set: {
           isChecked: !isChecked,
         },
@@ -84,10 +84,10 @@ const taskRemove = new ValidatedMethod({
   mixins: [SchemaMixin, LoggedInMixin, RateLimiterMixin],
   rateLimit: rateLimitDefaults,
   run({ taskId }) {
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+    const task = Tasks.findOne({ _id: taskId, userId: this.userId });
     if (!task) throw new Meteor.Error('Access denied.');
     try {
-      TasksCollection.remove(taskId);
+      Tasks.remove(taskId);
     } catch (error) {
       throw new Meteor.Error('Could not remove collection.', error); 
     }

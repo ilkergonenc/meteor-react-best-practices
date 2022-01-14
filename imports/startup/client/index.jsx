@@ -1,16 +1,3 @@
-import React from 'react';
-import * as ReactDOM from "react-dom";
-import { RouterApp } from './router';
+import '/imports/api/@/queries';
 
-Meteor.startup(() => {
-  ReactDOM.render(
-    <App />,
-    document.getElementById('react-application')
-    );
-});
-
-function App(){
-  return (
-    <RouterApp />
-  );
-};
+import './app';

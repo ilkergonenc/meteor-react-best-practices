@@ -11,7 +11,7 @@ import {
   Checkbox
 } from '@chakra-ui/react';
 
-import { taskInsert, taskUpdate, taskRemove } from '/imports/api/tasks/tasks.methods';
+import { taskInsert, taskUpdate, taskRemove } from '/imports/api/tasks/methods';
 import FormControlValid from '../@/FormControlValid';
 
 const deleteTask = ({ taskId }) => taskRemove.call({ taskId });

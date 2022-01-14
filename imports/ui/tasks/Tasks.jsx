@@ -11,7 +11,7 @@ import {
   List 
 } from '@chakra-ui/react';
 
-import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/tasks.methods';
+import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/methods';
 import tasksQuery from '/imports/api/tasks/queries/tasks';
 
 import { TaskItem } from './TaskItem';
