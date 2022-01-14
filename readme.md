@@ -41,7 +41,7 @@
 - https://reactrouter.com/docs/en/v6/getting-started/installation
 - https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data
 
-## UserInterface: ComponentBased Structure: chackra | hookforms | loadable
+## UserInterface: ComponentBased Structure: chackra | hookforms
 - https://guide.meteor.com/structure.html#javascript-structure 
 - https://chakra-ui.com/docs/getting-started
 - https://react-hook-form.com/get-started
