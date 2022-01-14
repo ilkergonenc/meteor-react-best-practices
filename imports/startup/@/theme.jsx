@@ -1,5 +1,9 @@
 import React from 'react';
-import { extendTheme, ChakraProvider, CSSReset } from '@chakra-ui/react';
+import { 
+  extendTheme, 
+  ChakraProvider, 
+  CSSReset 
+} from '@chakra-ui/react';
 
 const config = {
   initialColorMode: "dark",

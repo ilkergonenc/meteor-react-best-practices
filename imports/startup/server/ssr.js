@@ -1,4 +1,3 @@
-// import { Meteor } from 'meteor/meteor';
 import { onPageLoad } from "meteor/server-render";
 
 import React from "react";
