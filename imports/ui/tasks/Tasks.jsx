@@ -54,7 +54,7 @@ export const Tasks = () => {
         To Do List {pendingTasksCount ? ` (${pendingTasksCount})` : ''}
       </Heading>
 
-      <TaskForm formWithId={false} />
+      <TaskForm formWithId={false}  hideTitle={true} />
 
       <Center>
         <Button mt={4} colorScheme='teal' type='button' onClick={() => setHideCompleted(!hideCompleted)}>

@@ -16,7 +16,7 @@ import FormControlValid from '../@/FormControlValid';
 
 const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
 
-export const TaskForm = ({ formWithId }) => {
+export const TaskForm = ({ formWithId, hideTitle }) => {
   
   let task;
   if(formWithId) task = useOutletContext();
@@ -67,9 +67,12 @@ export const TaskForm = ({ formWithId }) => {
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack spacing={4}>
         <Flex>
-          <Heading as='h1' size='lg'>
-            {!formWithId ? 'New Task' : 'Edit Task'}
-          </Heading>
+          {!hideTitle && (
+            <Heading as='h1' size='lg'>
+              {!formWithId ? 'New Task' : 'Edit Task'}
+            </Heading>
+          )}
+
           <Spacer />
           {formWithId && <Button onClick={() => onDeleteClick(task?._id)}>Delete</Button>}
         </Flex>
