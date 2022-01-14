@@ -57,6 +57,6 @@
 - https://github.com/cult-of-coders/grapher-react
 - https://github.com/cult-of-coders/grapher-boilerplate
 
-# SSR: Server-Side Rendering
+## SSR: Server-Side Rendering
 - https://docs.meteor.com/packages/server-render.html
 - https://reactrouter.com/docs/en/v6/guides/ssr
