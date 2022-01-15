@@ -7,5 +7,8 @@ export default Users;
 // Tasks.helpers({
 //   fullname() {
 //     return `${this.firstname} ${this.lastname}`;
+//   },
+//   email() {
+//     return this.emails[0].address;
 //   }
 // });
