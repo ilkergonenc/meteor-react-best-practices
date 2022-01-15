@@ -1,14 +1,5 @@
 import { Loadable }  from 'meteor/npdev:react-loadable';
-
-import React from 'react';
-
-const Loading = (props) => {
-  if (props.error) {
-    return <div>Loadable Error!</div>;
-  } else {
-    return <div>Loadable.ing...</div>;
-  }
-};
+import { Loading } from '/imports/startup/@/loadable';
 
 export const TaskID = Loadable({
   loader: () => import('../TaskID'),
