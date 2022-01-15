@@ -66,4 +66,7 @@
   - https://github.com/CaptainN/npdev-react-loadable // ALTERNATIVE
 - ### SEO: Title | Meta Data 
   - https://github.com/nfl/react-helmet // GREAT BUT DOESNT SUPPORT DYNAMIC SO i18n
-  - https://github.com/kodyl/react-document-meta // ALTERNATIVE
+  - https://github.com/kodyl/react-document-meta // ALTERNATIVE // NOTE: USE STABLE VERSION
+- ### i18n: multi language 
+  - https://www.i18next.com/
+  - https://react.i18next.com/
