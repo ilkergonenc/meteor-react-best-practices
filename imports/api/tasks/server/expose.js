@@ -1,4 +1,4 @@
-import Tasks from './collection';
+import Tasks from '../collection';
 
 Tasks.expose({
   firewall(userId, params) {

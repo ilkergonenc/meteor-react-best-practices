@@ -1,3 +1,3 @@
-import '/imports/api/@/queries';
+import '/imports/api/@/client';
 
 import './ssr';

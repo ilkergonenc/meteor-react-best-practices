@@ -1,4 +1,4 @@
-import '/imports/api/@';
+import '/imports/api/@/server';
 
 import './ssr';
 
