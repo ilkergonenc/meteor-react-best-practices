@@ -72,3 +72,4 @@
 - ### i18n: multi language 
   - https://www.i18next.com/
   - https://react.i18next.com/
+  - https://github.com/meteorhacks/meteor-inject-initial
