@@ -1,1 +1,4 @@
 welcome: Welcome
+notFound: 
+  title: Page not found.
+  desc: Sorry but the page is not found.

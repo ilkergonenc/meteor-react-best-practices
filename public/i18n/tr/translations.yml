@@ -1,1 +1,4 @@
 welcome: Merhaba
+notFound: 
+  title: Sayfa Bulunamadı.
+  desc: Böyle bir sayfa bulamadık.
