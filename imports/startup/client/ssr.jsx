@@ -6,7 +6,7 @@ import { hydrate } from 'react-dom';
 
 import { ClientRouter } from '/imports/startup/@/router';
 
-import '../@/i18n';
+import '/imports/startup/@/i18n';
 
 onPageLoad(() => {
   const App = () => {

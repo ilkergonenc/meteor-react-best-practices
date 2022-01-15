@@ -14,9 +14,7 @@ import { ServerRouter } from '/imports/startup/@/router';
 
 preloadAllLoadables().then(() => {
   onPageLoad(sink => {  
-
     const loadableHandle = {};
-
     const App = ReactDOMServer.renderToString(
       <I18nextProvider i18n={i18n}>
         <LoadableCaptureProvider handle={loadableHandle}>
@@ -24,11 +22,8 @@ preloadAllLoadables().then(() => {
         </LoadableCaptureProvider>
       </I18nextProvider>
     );
-
     sink.renderIntoElementById("react-application", App);
-    
     sink.appendToHead(DocumentMeta.renderAsHTML());
-
     sink.appendToBody(loadableHandle.toScriptTag());
   });
 });

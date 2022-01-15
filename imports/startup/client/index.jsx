@@ -1,3 +1,3 @@
-import '/imports/api/@/client';
+import '/imports/api/@/startup/client';
 
 import './ssr';
