@@ -58,8 +58,10 @@
 - https://github.com/cult-of-coders/grapher-boilerplate
 
 ## SSR: Server-Side Rendering
-- https://docs.meteor.com/packages/server-render.html
-- https://reactrouter.com/docs/en/v6/guides/ssr
+- ### Meteor
+  - https://docs.meteor.com/packages/server-render.html
+- ### Router
+  - https://reactrouter.com/docs/en/v6/guides/ssr
 - ### Loadable Components
   - https://github.com/jamiebuilds/react-loadable // OUTDATED
   - https://loadable-components.com/docs/server-side-rendering/ // WEBPACK 
