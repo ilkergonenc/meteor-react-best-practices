@@ -4,6 +4,8 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import yaml from 'js-yaml';
 
+const defaultLang = 'en';
+
 const options = {
   lng: 'tr',
   lang: 'tr',
@@ -40,3 +42,4 @@ if (!i18n.isInitialized) {
 }
 
 export default i18n;
+export { defaultLang };

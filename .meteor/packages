@@ -31,3 +31,4 @@ ddp-rate-limiter
 accounts-base
 server-render
 npdev:react-loadable
+meteorhacks:inject-initial

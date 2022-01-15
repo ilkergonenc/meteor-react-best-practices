@@ -52,6 +52,7 @@ matb33:collection-hooks@0.8.4
 mdg:validated-method@1.2.0
 meteor@1.9.3
 meteor-base@1.4.0
+meteorhacks:inject-initial@1.0.5
 minifier-css@1.5.3
 minifier-js@2.6.0
 minimongo@1.6.1
