@@ -17,6 +17,7 @@
     "framer-motion": "^5.5.5",
     "meteor-node-stubs": "^1.0.1",
     "react": "^16.13.1",
+    "react-document-meta": "^2.1.2",
     "react-dom": "^16.13.1",
     "react-hook-form": "^7.22.5",
     "react-router-dom": "^6.2.1",
@@ -33,6 +34,8 @@
     "testModule": "tests/main.js"
   },
   "babel": {
-    "plugins": ["npdev-react-loadable-babel"]
+    "plugins": [
+      "npdev-react-loadable-babel"
+    ]
   }
 }

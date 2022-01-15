@@ -64,3 +64,6 @@
   - https://github.com/jamiebuilds/react-loadable // OUTDATED
   - https://loadable-components.com/docs/server-side-rendering/ // WEBPACK 
   - https://github.com/CaptainN/npdev-react-loadable // ALTERNATIVE
+- ### SEO: Title | Meta Data 
+  - https://github.com/nfl/react-helmet // GREAT BUT DOESNT SUPPORT DYNAMIC SO i18n
+  - https://github.com/kodyl/react-document-meta // ALTERNATIVE
