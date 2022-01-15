@@ -6,7 +6,7 @@ import { useParams, Outlet, Navigate } from "react-router-dom";
 
 import tasksQuery from "/imports/api/tasks/queries/tasks";
 
-export const TaskID = () => {
+export default TaskID = () => {
 
   const { taskId } =  useParams();
   

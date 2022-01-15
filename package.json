@@ -22,11 +22,17 @@
     "react-router-dom": "^6.2.1",
     "simpl-schema": "^1.12.0"
   },
+  "devDependencies": {
+    "npdev-react-loadable-babel": "^1.1.0"
+  },
   "meteor": {
     "mainModule": {
       "client": "client/main.jsx",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "babel": {
+    "plugins": ["npdev-react-loadable-babel"]
   }
 }

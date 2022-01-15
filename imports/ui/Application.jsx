@@ -10,7 +10,7 @@ import { Welcome } from './Welcome';
 import { AuthRouter } from './auth/AuthRouter';
 
 import { AuthMiddleware } from './auth/@/AuthMiddleware';
-import { TasksRouter } from './tasks/TasksRouter';
+import { TasksRouter } from './tasks/@/TasksRouter';
 
 import { NotFound } from './NotFound';
 

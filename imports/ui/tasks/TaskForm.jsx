@@ -16,7 +16,7 @@ import FormControlValid from '../@/FormControlValid';
 
 const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
 
-export const TaskForm = ({ formWithId, hideTitle }) => {
+export default TaskForm = ({ formWithId, hideTitle }) => {
   
   let task;
   if(formWithId) task = useOutletContext();

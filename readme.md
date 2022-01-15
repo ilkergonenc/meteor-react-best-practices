@@ -60,3 +60,7 @@
 ## SSR: Server-Side Rendering
 - https://docs.meteor.com/packages/server-render.html
 - https://reactrouter.com/docs/en/v6/guides/ssr
+- ### Loadable Components
+  - https://github.com/jamiebuilds/react-loadable // OUTDATED
+  - https://loadable-components.com/docs/server-side-rendering/ // WEBPACK 
+  - https://github.com/CaptainN/npdev-react-loadable // ALTERNATIVE

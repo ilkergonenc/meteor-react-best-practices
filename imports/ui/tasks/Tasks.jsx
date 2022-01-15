@@ -14,14 +14,16 @@ import {
 import { taskSetIsChecked, taskRemove } from '/imports/api/tasks/methods';
 import tasksQuery from '/imports/api/tasks/queries/tasks';
 
-import { TaskItem } from './TaskItem';
-import { TaskForm } from './TaskForm';
+import { 
+  TaskForm, 
+  TaskItem
+ } from './@/TasksComponents';
 
 const toggleChecked = ({ taskId, isChecked }) => taskSetIsChecked.call({ taskId, isChecked });
 
 const deleteTask = ({ taskId }) => taskRemove.call({ taskId });
 
-export const Tasks = () => {
+export default Tasks = () => {
 
   const user = useTracker(() => Meteor.user());
 

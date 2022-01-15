@@ -9,7 +9,7 @@ import {
   HStack
 } from '@chakra-ui/react';
 
-export const TaskItem = ({ task, onCheckboxClick, onDeleteClick }) => {
+export default TaskItem = ({ task, onCheckboxClick, onDeleteClick }) => {
 
   const [checked, setChecked] = React.useState(!!task.isChecked);
 

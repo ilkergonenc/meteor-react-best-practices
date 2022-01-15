@@ -1,10 +1,12 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
-import { TaskID } from './TaskID';
-import { TaskForm } from './TaskForm';
-import { Task } from './Task';
-import { Tasks } from './Tasks';
+import {
+  TaskID,
+  TaskForm,
+  Task,
+  Tasks
+} from './TasksComponents';
 
 export const TasksRouter = () => (
   <Routes>

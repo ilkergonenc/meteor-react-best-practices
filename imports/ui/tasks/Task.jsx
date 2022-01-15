@@ -2,7 +2,7 @@ import React from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { Box, Button } from '@chakra-ui/react';
 
-export const Task = () => {
+export default Task = () => {
   const task = useOutletContext();
   const nav = useNavigate();
   return (
